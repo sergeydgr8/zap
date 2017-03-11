@@ -12,3 +12,5 @@ g:
     query: search?q=
   z:
     expand: issmirnov/zap
+'127.0.0.1:8080':
+  expand: '127.0.0.0.1:8080'

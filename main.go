@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	_ "net/http/pprof"
 	"os"
 	"path"
 
@@ -61,6 +62,7 @@ func main() {
 	router.Handler("GET", "/", ctxWrapper{context, IndexHandler})
 	router.Handler("GET", "/varz", ctxWrapper{context, VarsHandler})
 	router.HandlerFunc("GET", "/healthz", HealthHandler)
+	router.GET("/debug/pprof/*pprof", handlePprof)
 
 	// TODO check for errors - addr in use, sudo issues, etc.
 	fmt.Printf("Launching %s on %s:%d\n", appName, *host, *port)
